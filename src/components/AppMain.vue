@@ -11,23 +11,33 @@ export default {
             searchMovie: [],
         };
     },
-    mounted() {
-        axios
-            .get("https://api.themoviedb.org/3/search/movie?api_key=8d990f04e5e690857302762e75a6986a&query=%2ASleepers")
-            .then(response => {
-                console.log(response.data.results);
-                this.MovieCards = response.data.results
-                console.log(this.MovieCards);
+    methods: {
+        filterResults() {
+            const url = `"https://api.themoviedb.org/3/search/movie?api_key=8d990f04e5e690857302762e75a6986a&query=%2${this.searchMovie}"`
 
-            })
-            .catch(error => {
-                console.error(error);
-            })
+            axios
+                /* console.log(url) */
+                .get(url)
+                .then(response => {
+                    console.log(response.data.results);
+                    /* this.MovieCards = response.data.results
+                    console.log(this.MovieCards); */
+
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+        }
+    },
+    mounted() {
+        this.filterResults()
     },
 
 }
 </script>
 <template>
+    <input name="searchMovie" type="text" v-model="searchMovie" placeholder="Inserisci il titolo di un film"
+        @keypress.enter="filterResults">
     <div class="container">
         <div class="row">
             <div class="col" v-for="MovieCard in MovieCards">
