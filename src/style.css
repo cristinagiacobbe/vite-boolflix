@@ -3,3 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  background-color: darkgray;
+}
+
+.container {
+  width: 90%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  width: calc(100% / 12 * 3);
+  padding: 1rem;
+}

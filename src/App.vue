@@ -13,6 +13,10 @@ export default {
 }
 </script>
 
-<template></template>
+<template>
+  <AppHeader></AppHeader>
+  <AppMain></AppMain>
+  <AppFooter></AppFooter>
+</template>
 
 <style scoped></style>
