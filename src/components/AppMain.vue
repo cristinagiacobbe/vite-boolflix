@@ -57,13 +57,14 @@ export default {
                     /* console.log(response.data.results); */
                     this.MovieCards = response.data.results
                     console.log(this.MovieCards);
-                    this.filterFlag()
+                    this.matchFlag()
+                    this.roundVote()
                 })
                 .catch(error => {
                     console.error(error);
                 })
         },
-        filterFlag() {
+        matchFlag() {
             this.MovieCards.forEach((MovieCard) => {
                 this.Flags.forEach((Flag) => {
                     if (Flag.State === MovieCard.original_language) {
@@ -73,6 +74,11 @@ export default {
                 //console.log(this.MovieCards);
             })
         },
+        roundVote() {
+            this.MovieCards.forEach((MovieCard) => {
+                return MovieCard.vote_average = Math.round(MovieCard.vote_average / 2)
+            })
+        }
     },
 }
 
@@ -90,6 +96,15 @@ export default {
                         <li class="title">Titolo: <span class="text">{{ MovieCard.title }}</span></li>
                         <li>Titolo originale: {{ MovieCard.original_title }}</li>
                         <li>Voto: {{ MovieCard.vote_average }}</li>
+                        <div class="vote">
+                            <li v-for="vote in MovieCard.vote_average">
+                                <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                            </li>
+                            <li v-for="vote in (5 - MovieCard.vote_average)">
+                                <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+                            </li>
+                        </div>
+
                         <li><img :src="MovieCard.flag" :alt="MovieCard.original_language"></li>
                         <li><img :src="this.urlPattern + MovieCard.poster_path" alt=""></li>
 
@@ -126,5 +141,9 @@ li {
 
 .text {
     font-weight: lighter;
+}
+
+.vote {
+    display: flex;
 }
 </style>
