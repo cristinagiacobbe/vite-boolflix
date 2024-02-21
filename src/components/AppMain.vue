@@ -12,27 +12,27 @@ export default {
             Flags: [
                 {
                     State: "en",
-                    ImgFlag: "https://icons8.it/icon/ShNNs7i8tXQF/circolare-della-gran-bretagna"
+                    ImgFlag: "https://flagcdn.com/32x24/gb.png"
                 },
                 {
                     State: "it",
-                    ImgFlag: "https://icons8.it/icon/WmOfu4e7Rvp7/italy"
+                    ImgFlag: "https://flagcdn.com/32x24/it.png"
                 },
                 {
                     State: "fr",
-                    ImgFlag: "https://icons8.it/icon/YwnngGdMBmIV/france"
+                    ImgFlag: "https://flagcdn.com/32x24/fr.png"
                 },
                 {
                     State: "de",
-                    ImgFlag: "https://icons8.it/icon/vRrbNnaD93Ys/germany"
+                    ImgFlag: "https://flagcdn.com/32x24/de.png"
                 },
                 {
                     State: "ja",
-                    ImgFlag: "https://icons8.it/icon/FeSjxToMjcoN/japan"
+                    ImgFlag: "https://flagcdn.com/32x24/jp.png"
                 },
                 {
                     State: "fi",
-                    ImgFlag: "https://icons8.it/icon/4H2bz4a1RByw/finland"
+                    ImgFlag: "https://flagcdn.com/32x24/fi.png"
                 },
                 {
                     State: "no",
@@ -40,7 +40,7 @@ export default {
                 },
                 {
                     State: "ro",
-                    ImgFlag: "https://icons8.it/icon/R0NO2pastBPs/romania"
+                    ImgFlag: "https://flagcdn.com/32x24/ro.png"
                 }
             ],
             urlPattern: "https://image.tmdb.org/t/p/w342/"
@@ -49,41 +49,36 @@ export default {
     methods: {
         filterResults() {
             const filteredUrl = `https://api.themoviedb.org/3/search/movie?api_key=8d990f04e5e690857302762e75a6986a&language=it_IT&query=%2A${this.searchMovie}`
-            console.log(filteredUrl);
+            //console.log(filteredUrl);
 
             axios
                 .get(filteredUrl)
                 .then((response) => {
                     /* console.log(response.data.results); */
                     this.MovieCards = response.data.results
-                    /* console.log(this.MovieCards); */
-
+                    console.log(this.MovieCards);
+                    this.filterFlag()
                 })
                 .catch(error => {
                     console.error(error);
                 })
         },
-        filterFlag(param) {
-            this.Flags.forEach(Flag => {
-                if (Flag.State === param) {
-                    console.log(Flag.ImgFlag);
-                    return Flag.ImgFlag
-                }
+        filterFlag() {
+            this.MovieCards.forEach((MovieCard) => {
+                this.Flags.forEach((Flag) => {
+                    if (Flag.State === MovieCard.original_language) {
+                        return MovieCard.flag = Flag.ImgFlag
+                    }
+                })
+                //console.log(this.MovieCards);
             })
-        }
+        },
     },
-    /* computed: {
-        filterFlag(param) {
-            this.Flags.filter((Flag) => {
-                if (Flag.State === param) {
-                    return this.Flag.imgFlag
-                }
-            })
-        }
-    } */
-
 }
+
 </script>
+
+
 <template>
     <input name="searchMovie" type="text" v-model="searchMovie" placeholder="Inserisci il titolo di un film"
         @keypress.enter="filterResults">
@@ -92,11 +87,10 @@ export default {
             <div class="col" v-for="MovieCard in MovieCards">
                 <div class="card">
                     <ul>
-                        <li class="title">{{ MovieCard.title }}</li>
-                        <li> {{ MovieCard.original_title }}</li>
-                        <li> {{ MovieCard.original_language }}</li>
-                        <li> {{ MovieCard.vote_average }}</li>
-                        <li><img :src="filterFlag(MovieCard.original_language)" alt=""></li>
+                        <li class="title">Titolo: <span class="text">{{ MovieCard.title }}</span></li>
+                        <li>Titolo originale: {{ MovieCard.original_title }}</li>
+                        <li>Voto: {{ MovieCard.vote_average }}</li>
+                        <li><img :src="MovieCard.flag" :alt="MovieCard.original_language"></li>
                         <li><img :src="this.urlPattern + MovieCard.poster_path" alt=""></li>
 
                     </ul>
@@ -123,11 +117,14 @@ img {
 
 li {
     list-style: none;
-    text-align: center;
 }
 
 .title {
     font-weight: bold;
     font-size: 20px;
+}
+
+.text {
+    font-weight: lighter;
 }
 </style>
