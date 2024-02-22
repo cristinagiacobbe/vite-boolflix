@@ -10,15 +10,12 @@ export default {
             urlPattern: "https://image.tmdb.org/t/p/w342/"
         };
     },
-
 }
 
 </script>
 
 
 <template>
-    <input name="searchMovie" type="text" v-model="state.searchMovie" placeholder="Inserisci il titolo di un film"
-        @keypress.enter="state.filterResults">
     <div class="container">
         <div class="row">
             <div class="col" v-for="MovieCard in state.MovieCards">
