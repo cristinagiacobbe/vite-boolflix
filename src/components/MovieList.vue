@@ -24,20 +24,35 @@ export default {
             <div class="col" v-for="MovieCard in state.MovieCards">
                 <div class="card">
                     <ul>
+                        <div class="card over">
+                            <img :src="this.urlPattern + MovieCard.poster_path" alt="">
+                        </div>
                         <li class="title">Titolo: <span class="text">{{ MovieCard.title }}</span></li>
                         <li>Titolo originale: {{ MovieCard.original_title }}</li>
                         <li>Voto: {{ MovieCard.vote_average }}</li>
 
                         <Vote :MovieCard="MovieCard.vote_average"></Vote>
 
-
                         <li><img :src="MovieCard.flag" :alt="MovieCard.original_language"></li>
-                        <li><img :src="this.urlPattern + MovieCard.poster_path" alt=""></li>
+                        <li>Content: {{ MovieCard.overview }}</li>
+
 
                     </ul>
                 </div>
+
             </div>
         </div>
     </div>
 </template>
-<style></style>
+
+
+<style>
+.over {
+    position: absolute;
+
+}
+
+.over:hover {
+    display: none;
+}
+</style>
