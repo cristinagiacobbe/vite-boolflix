@@ -1,13 +1,16 @@
 <script>
-import axios from 'axios';
 import { state } from '../state.js'
+import MovieList from './MovieList.vue'
 
 export default {
     name: 'AppMain',
+    components: {
+        MovieList,
+    },
     data() {
         return {
             state,
-            urlPattern: "https://image.tmdb.org/t/p/w342/"
+
         };
     },
 }
@@ -16,31 +19,7 @@ export default {
 
 
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col" v-for="MovieCard in state.MovieCards">
-                <div class="card">
-                    <ul>
-                        <li class="title">Titolo: <span class="text">{{ MovieCard.title }}</span></li>
-                        <li>Titolo originale: {{ MovieCard.original_title }}</li>
-                        <li>Voto: {{ MovieCard.vote_average }}</li>
-                        <div class="vote">
-                            <li v-for="vote in MovieCard.vote_average">
-                                <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                            </li>
-                            <li v-for="vote in (5 - MovieCard.vote_average)">
-                                <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
-                            </li>
-                        </div>
-
-                        <li><img :src="MovieCard.flag" :alt="MovieCard.original_language"></li>
-                        <li><img :src="this.urlPattern + MovieCard.poster_path" alt=""></li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <MovieList></MovieList>
 </template>
 
 
