@@ -21,4 +21,18 @@ export default {
         <img :src="this.urlPattern + image" alt="">
     </div>
 </template>
-<style></style>
+
+<style scoped>
+.card-cover {
+    position: absolute;
+
+}
+
+.card-cover:hover {
+    display: none;
+}
+
+img {
+    width: calc(100% - 1rem);
+}
+</style>

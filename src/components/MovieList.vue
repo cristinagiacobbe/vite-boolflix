@@ -29,7 +29,6 @@ export default {
                         <CardText :MovieCard="MovieCard"></CardText>
                     </ul>
                 </div>
-
             </div>
         </div>
     </div>
@@ -37,15 +36,6 @@ export default {
 
 
 <style scope>
-.card-cover {
-    position: absolute;
-
-}
-
-.card-cover:hover {
-    display: none;
-}
-
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -55,24 +45,8 @@ export default {
     width: calc(100% / 12 * 3);
 }
 
-img {
-    max-width: 100%;
-}
+.card {
 
-li {
-    list-style: none;
-}
-
-.title {
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.text {
-    font-weight: lighter;
-}
-
-.vote {
-    display: flex;
+    padding: 0.5rem;
 }
 </style>

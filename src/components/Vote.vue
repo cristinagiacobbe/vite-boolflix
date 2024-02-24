@@ -16,6 +16,7 @@ export default {
 </script>
 <template>
     <div class="vote">
+        <span>Voto:</span>
         <li v-for="vote in MovieCard">
             <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
         </li>
@@ -24,4 +25,9 @@ export default {
         </li>
     </div>
 </template>
-<style></style>
+
+<style>
+.vote {
+    display: flex;
+}
+</style>

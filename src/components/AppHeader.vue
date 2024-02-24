@@ -23,16 +23,4 @@ export default {
     <SearchMovie @search="state.filterResults()"></SearchMovie>
 </template>
 
-<style scoped>
-.container {
-    display: flex;
-    justify-content: end;
-    gap: 2rem;
-    margin: 2rem;
-}
-
-inupt,
-button {
-    padding: 5px;
-}
-</style>
+<style scoped></style>

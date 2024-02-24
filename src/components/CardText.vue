@@ -20,7 +20,7 @@ export default {
     <div class="card-text">
         <li class="title">Titolo:{{ MovieCard.title ? MovieCard.title : MovieCard.original_name }}</li>
         <li> {{ MovieCard.original_title ? "Titolo: " + MovieCard.original_title : "" }} </li>
-        <li>Voto: {{ MovieCard.vote_average }}</li>
+        <!-- <li>Voto: {{ MovieCard.vote_average }}</li> -->
 
         <Vote :MovieCard="MovieCard.vote_average"></Vote>
 
@@ -28,4 +28,27 @@ export default {
         <li>Content: {{ MovieCard.overview }}</li>
     </div>
 </template>
-<style></style>
+
+<style>
+.card-text {
+    min-height: 500px;
+    color: white;
+    border: 1px solid white;
+    background-color: black;
+    padding: 1rem;
+}
+
+li {
+    list-style: none;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+.text {
+    font-weight: lighter;
+}
+</style>

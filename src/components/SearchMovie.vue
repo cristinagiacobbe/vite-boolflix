@@ -20,4 +20,18 @@ export default {
         <button @click="$emit('search')">Search</button>
     </div>
 </template>
-<style></style>
+
+
+<style>
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem;
+}
+
+inupt,
+button {
+    padding: 5px;
+}
+</style>
