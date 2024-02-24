@@ -27,16 +27,14 @@ export default {
                         <div class="card over">
                             <img :src="this.urlPattern + MovieCard.poster_path" alt="">
                         </div>
-                        <li class="title">Titolo: <span class="text">{{ MovieCard.title }}</span></li>
-                        <li>Titolo originale: {{ MovieCard.original_title }}</li>
+                        <li class="title">Titolo:{{ MovieCard.title ? MovieCard.title : MovieCard.original_name }}</li>
+                        <li> {{ MovieCard.original_title ? "Titolo: " + MovieCard.original_title : "" }} </li>
                         <li>Voto: {{ MovieCard.vote_average }}</li>
 
                         <Vote :MovieCard="MovieCard.vote_average"></Vote>
 
                         <li><img :src="MovieCard.flag" :alt="MovieCard.original_language"></li>
                         <li>Content: {{ MovieCard.overview }}</li>
-
-
                     </ul>
                 </div>
 

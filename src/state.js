@@ -2,7 +2,7 @@ import { reactive } from 'vue'
 import axios from 'axios'
 
 export const state = reactive({
-    base_api_url: "https://api.themoviedb.org/3/search/movie?api_key=8d990f04e5e690857302762e75a6986a&query=%2A",
+    base_api_url: "https://api.themoviedb.org/3/search/multi?api_key=8d990f04e5e690857302762e75a6986a&language=it_IT&query=%2A",
     MovieCards: [],
     searchMovie: [],
     Flags: [
@@ -37,6 +37,10 @@ export const state = reactive({
         {
             State: "ro",
             ImgFlag: "https://flagcdn.com/32x24/ro.png"
+        },
+        {
+            State: "es",
+            ImgFlag: "https://flagcdn.com/32x24/es.png"
         }
     ],
 
