@@ -1,16 +1,17 @@
 <script>
 import { state } from '../state.js'
-import Vote from './Vote.vue'
+import Cover from './Cover.vue'
+import CardText from './CardText.vue'
 
 export default {
     name: 'MovieList',
     components: {
-        Vote,
+        Cover,
+        CardText,
     },
     data() {
         return {
             state,
-            urlPattern: "https://image.tmdb.org/t/p/w342/",
         }
     }
 }
@@ -24,17 +25,8 @@ export default {
             <div class="col" v-for="MovieCard in state.MovieCards">
                 <div class="card">
                     <ul>
-                        <div class="card over">
-                            <img :src="this.urlPattern + MovieCard.poster_path" alt="">
-                        </div>
-                        <li class="title">Titolo:{{ MovieCard.title ? MovieCard.title : MovieCard.original_name }}</li>
-                        <li> {{ MovieCard.original_title ? "Titolo: " + MovieCard.original_title : "" }} </li>
-                        <li>Voto: {{ MovieCard.vote_average }}</li>
-
-                        <Vote :MovieCard="MovieCard.vote_average"></Vote>
-
-                        <li><img :src="MovieCard.flag" :alt="MovieCard.original_language"></li>
-                        <li>Content: {{ MovieCard.overview }}</li>
+                        <Cover :image="MovieCard.poster_path"></Cover>
+                        <CardText :MovieCard="MovieCard"></CardText>
                     </ul>
                 </div>
 
@@ -44,13 +36,43 @@ export default {
 </template>
 
 
-<style>
-.over {
+<style scope>
+.card-cover {
     position: absolute;
 
 }
 
-.over:hover {
+.card-cover:hover {
     display: none;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    width: calc(100% / 12 * 3);
+}
+
+img {
+    max-width: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.text {
+    font-weight: lighter;
+}
+
+.vote {
+    display: flex;
 }
 </style>
