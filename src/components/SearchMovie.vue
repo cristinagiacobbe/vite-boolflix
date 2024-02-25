@@ -16,7 +16,8 @@ export default {
 </script>
 <template>
     <div class="container">
-        <input name="searchMovie" type="text" v-model="state.searchMovie" placeholder="Inserisci il titolo di un film">
+        <input name="searchMovie" type="text" v-model="state.searchMovie"
+            placeholder="Inserisci il titolo di un film/serie tv">
         <button @click="$emit('search')">Search</button>
     </div>
 </template>

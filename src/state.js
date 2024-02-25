@@ -2,8 +2,11 @@ import { reactive } from 'vue'
 import axios from 'axios'
 
 export const state = reactive({
-    base_api_url: "https://api.themoviedb.org/3/search/multi?api_key=8d990f04e5e690857302762e75a6986a&language=it_IT&query=%2A",
+    movie_api_url: "https://api.themoviedb.org/3/search/movie?api_key=8d990f04e5e690857302762e75a6986a&language=it_IT&query=%2A",
+    tv_api_url: "https://api.themoviedb.org/3/search/tv?api_key=8d990f04e5e690857302762e75a6986a&language=it_IT&query=%2A",
     MovieCards: [],
+    TvCards: [],
+    TotalCards: [],
     searchMovie: [],
     Flags: [
         {
@@ -45,35 +48,47 @@ export const state = reactive({
     ],
 
     filterResults() {
-        const filteredUrl = `${state.base_api_url}${this.searchMovie}`
+        const filteredMovieUrl = `${state.movie_api_url}${this.searchMovie}`
+        const filteredTvUrl = `${state.tv_api_url}${this.searchMovie}`
         //console.log(filteredUrl);
 
         axios
-            .get(filteredUrl)
+            .get(filteredMovieUrl)
             .then((response) => {
                 /* console.log(response.data.results); */
                 this.MovieCards = response.data.results
-                console.log(this.MovieCards);
-                this.matchFlag()
-                this.roundVote()
+                this.matchFlag(this.MovieCards)
+                this.roundVote(this.MovieCards)
+                this.TotalCards.push(this.MovieCards)
+                console.log(this.TotalCards);
+            })
+        axios
+            .get(filteredTvUrl)
+            .then((response) => {
+                /* console.log(response.data.results); */
+                this.TvCards = response.data.results
+                this.matchFlag(this.TvCards)
+                this.roundVote(this.TvCards)
+                this.TotalCards.push(this.TvCards)
+                console.log(this.TotalCards);
             })
             .catch(error => {
                 console.error(error);
             })
     },
-    matchFlag() {
-        this.MovieCards.forEach((MovieCard) => {
+    matchFlag(list) {
+        list.forEach((Card) => {
             this.Flags.forEach((Flag) => {
-                if (Flag.State === MovieCard.original_language) {
-                    return MovieCard.flag = Flag.ImgFlag
+                if (Flag.State === Card.original_language) {
+                    return Card.flag = Flag.ImgFlag
                 }
             })
             //console.log(this.MovieCards);
         })
     },
-    roundVote() {
-        this.MovieCards.forEach((MovieCard) => {
-            return MovieCard.vote_average = Math.round(MovieCard.vote_average / 2)
+    roundVote(list) {
+        list.forEach((Card) => {
+            return Card.vote_average = Math.round(Card.vote_average / 2)
         })
     }
 })

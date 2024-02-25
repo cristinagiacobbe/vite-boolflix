@@ -4,7 +4,7 @@ import Vote from './Vote.vue'
 export default {
     name: 'CardText',
     props: {
-        MovieCard: Object
+        TotalCard: Object
     },
     components: {
         Vote,
@@ -18,14 +18,14 @@ export default {
 </script>
 <template>
     <div class="card-text">
-        <li class="title">Titolo:{{ MovieCard.title ? MovieCard.title : MovieCard.original_name }}</li>
-        <li> {{ MovieCard.original_title ? "Titolo: " + MovieCard.original_title : "" }} </li>
+        <li class="title">Titolo:{{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}</li>
+        <li> {{ TotalCard.original_title ? "Titolo: " + TotalCard.original_title : "" }} </li>
         <!-- <li>Voto: {{ MovieCard.vote_average }}</li> -->
 
-        <Vote :MovieCard="MovieCard.vote_average"></Vote>
+        <Vote :TotalCard="TotalCard.vote_average"></Vote>
 
-        <li><img :src="MovieCard.flag" :alt="MovieCard.original_language"></li>
-        <li>Content: {{ MovieCard.overview }}</li>
+        <li><img :src="TotalCard.flag" :alt="TotalCard.original_language"></li>
+        <li>Content: {{ TotalCard.overview }}</li>
     </div>
 </template>
 

@@ -22,11 +22,11 @@ export default {
 <template>
     <div class="container">
         <div class="row">
-            <div class="col" v-for="MovieCard in state.MovieCards">
+            <div class="col" v-for="TotalCard in state.TotalCards">
                 <div class="card">
                     <ul>
-                        <Cover :image="MovieCard.poster_path"></Cover>
-                        <CardText :MovieCard="MovieCard"></CardText>
+                        <Cover :image="TotalCard.poster_path"></Cover>
+                        <CardText :TotalCard="TotalCard"></CardText>
                     </ul>
                 </div>
             </div>

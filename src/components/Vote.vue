@@ -8,7 +8,7 @@ export default {
         }
     },
     props: {
-        MovieCard: Number
+        TotalCard: Number
     }
 }
 
@@ -17,10 +17,10 @@ export default {
 <template>
     <div class="vote">
         <span>Voto:</span>
-        <li v-for="vote in MovieCard">
+        <li v-for="vote in TotalCard">
             <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
         </li>
-        <li v-for="vote in (5 - MovieCard)">
+        <li v-for="vote in (5 - TotalCard)">
             <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
         </li>
     </div>
