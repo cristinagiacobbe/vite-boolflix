@@ -23,16 +23,21 @@ export default {
 </template>
 
 
-<style>
-.container {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin: 2rem;
-}
-
-inupt,
+<style scoped>
+input,
 button {
     padding: 5px;
+    border-radius: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input {
+    width: 300px;
+}
+
+.container {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
 }
 </style>

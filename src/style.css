@@ -4,8 +4,18 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bf-primary: #434343;
+  --bf-light: white;
+  --bf-dark: black;
+}
+
 body {
-  background-color: darkgray;
+  background-color: var(--bf-primary);
+  font-family: "Source Serif 4", serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
 }
 
 .container {

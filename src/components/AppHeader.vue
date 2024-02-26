@@ -17,10 +17,31 @@ export default {
 
 </script>
 <template>
-    <div class="logo">
-
-    </div>
-    <SearchMovie @search="state.filterResults()"></SearchMovie>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="/logo_boolflix.png" alt="logo">
+            </div>
+            <div class="searchbar">
+                <SearchMovie @search="state.filterResults()"></SearchMovie>
+            </div>
+        </div>
+    </header>
 </template>
 
-<style scoped></style>
+<style scoped>
+header {
+    height: 100px;
+    background-color: var(--bf-dark)
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+img {
+    height: 90px;
+}
+</style>
