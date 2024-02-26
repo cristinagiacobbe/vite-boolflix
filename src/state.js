@@ -50,7 +50,7 @@ export const state = reactive({
     filterResults() {
         const filteredMovieUrl = `${state.movie_api_url}${this.searchMovie}`
         const filteredTvUrl = `${state.tv_api_url}${this.searchMovie}`
-        //console.log(filteredUrl);
+        this.TotalCards = []
 
         axios
             .get(filteredMovieUrl)
@@ -59,8 +59,7 @@ export const state = reactive({
                 this.MovieCards = response.data.results
                 this.matchFlag(this.MovieCards)
                 this.roundVote(this.MovieCards)
-                this.TotalCards.push(this.MovieCards)
-                console.log(this.TotalCards);
+                this.concat(this.MovieCards)
             })
         axios
             .get(filteredTvUrl)
@@ -69,8 +68,7 @@ export const state = reactive({
                 this.TvCards = response.data.results
                 this.matchFlag(this.TvCards)
                 this.roundVote(this.TvCards)
-                this.TotalCards.push(this.TvCards)
-                console.log(this.TotalCards);
+                this.concat(this.TvCards)
             })
             .catch(error => {
                 console.error(error);
@@ -83,12 +81,14 @@ export const state = reactive({
                     return Card.flag = Flag.ImgFlag
                 }
             })
-            //console.log(this.MovieCards);
         })
     },
     roundVote(list) {
         list.forEach((Card) => {
             return Card.vote_average = Math.round(Card.vote_average / 2)
         })
+    },
+    concat(list) {
+        this.TotalCards = this.TotalCards.concat(list)
     }
 })

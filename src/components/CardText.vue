@@ -20,7 +20,7 @@ export default {
     <div class="card-text">
         <li class="title">Titolo:{{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}</li>
         <li> {{ TotalCard.original_title ? "Titolo: " + TotalCard.original_title : "" }} </li>
-        <!-- <li>Voto: {{ MovieCard.vote_average }}</li> -->
+
 
         <Vote :TotalCard="TotalCard.vote_average"></Vote>
 
