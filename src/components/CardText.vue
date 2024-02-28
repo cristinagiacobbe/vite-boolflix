@@ -1,6 +1,8 @@
 <script>
 import { state } from '../state.js'
 import Vote from './Vote.vue'
+import Overview from './Overview.vue'
+
 export default {
     name: 'CardText',
     props: {
@@ -8,33 +10,23 @@ export default {
     },
     components: {
         Vote,
+        Overview,
     },
     data() {
         return {
             state
         }
     },
-    methods: {
-        Slice(item) {
-            if (item.length > 350) {
-                return `${item.slice(0, 350)}...`;
-            } else {
-                return item
-            }
-        }
-    }
+
 }
 </script>
 <template>
     <div class="card-text">
         <li class="title"><strong>Titolo:</strong> {{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}</li>
         <li> {{ TotalCard.original_title ? "Titolo originale: " + TotalCard.original_title : "" }} </li>
-
-
         <Vote :TotalCard="TotalCard.vote_average"></Vote>
-
         <li><img :src="TotalCard.flag" :alt="TotalCard.original_language"></li>
-        <li class="overview"><strong>Overview:</strong> {{ Slice(TotalCard.overview) }}</li>
+        <Overview :TotalCard="TotalCard"></Overview>
     </div>
 </template>
 
