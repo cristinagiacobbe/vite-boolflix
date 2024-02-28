@@ -49,4 +49,22 @@ export default {
 
     padding: 0.5rem;
 }
+
+@media (max-width: 1400px) {
+    .col {
+        width: calc(100% / 12 * 4);
+    }
+}
+
+@media (max-width: 1100px) {
+    .col {
+        width: calc(100% / 12 * 6);
+    }
+}
+
+@media (max-width: 750px) {
+    .col {
+        width: 100%;
+    }
+}
 </style>
