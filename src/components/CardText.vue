@@ -13,25 +13,34 @@ export default {
         return {
             state
         }
+    },
+    methods: {
+        Slice(item) {
+            if (item.length > 350) {
+                return `${item.slice(0, 350)}...`;
+            } else {
+                return item
+            }
+        }
     }
 }
 </script>
 <template>
     <div class="card-text">
-        <li class="title">Titolo:{{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}</li>
-        <li> {{ TotalCard.original_title ? "Titolo: " + TotalCard.original_title : "" }} </li>
+        <li class="title"><strong>Titolo:</strong> {{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}</li>
+        <li> {{ TotalCard.original_title ? "Titolo originale: " + TotalCard.original_title : "" }} </li>
 
 
         <Vote :TotalCard="TotalCard.vote_average"></Vote>
 
         <li><img :src="TotalCard.flag" :alt="TotalCard.original_language"></li>
-        <li>Content: {{ TotalCard.overview }}</li>
+        <li class="overview"><strong>Overview:</strong> {{ Slice(TotalCard.overview) }}</li>
     </div>
 </template>
 
 <style>
 .card-text {
-    min-height: 500px;
+    height: 489px;
     color: white;
     border: 1px solid white;
     background-color: black;
@@ -43,12 +52,14 @@ li {
 }
 
 .title {
-    font-weight: bold;
     font-size: 20px;
-
 }
 
 .text {
     font-weight: lighter;
+}
+
+.overview {
+    padding-top: 0.5rem;
 }
 </style>

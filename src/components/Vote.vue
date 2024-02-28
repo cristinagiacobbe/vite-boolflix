@@ -16,7 +16,7 @@ export default {
 </script>
 <template>
     <div class="vote">
-        <span>Voto:</span>
+        <span><strong>Voto:</strong></span>
         <li v-for="vote in TotalCard">
             <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
         </li>
@@ -29,5 +29,6 @@ export default {
 <style>
 .vote {
     display: flex;
+    padding: 0.5rem 0;
 }
 </style>
