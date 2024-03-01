@@ -2,6 +2,7 @@
 import { state } from '../state.js'
 import Vote from './Vote.vue'
 import Overview from './Overview.vue'
+import Flag from './Flag.vue'
 
 export default {
     name: 'CardText',
@@ -11,11 +12,11 @@ export default {
     components: {
         Vote,
         Overview,
+        Flag,
     },
     data() {
         return {
             state,
-            alt_flag: "/universal_flag.png",
         }
     },
 
@@ -27,8 +28,7 @@ export default {
         <li> {{ TotalCard.original_title ? "Titolo originale: " + TotalCard.original_title : "" }} </li>
         <Vote :TotalCard="TotalCard.vote_average"></Vote>
 
-        <li v-if="TotalCard.flag.length > 0"><img :src="TotalCard.flag" :alt="TotalCard.original_language"></li>
-        <li v-else><img class="unFlag" :src="alt_flag" :alt="TotalCard.original_language"></li>
+        <Flag :TotalCard="TotalCard"></Flag>
 
         <Overview :TotalCard="TotalCard"></Overview>
     </div>
@@ -57,9 +57,5 @@ li {
 
 .overview {
     padding-top: 0.5rem;
-}
-
-.unFlag {
-    width: 50px;
 }
 </style>
