@@ -76,6 +76,7 @@ export const state = reactive({
     },
     matchFlag(list) {
         list.forEach((Card) => {
+            Card.flag = ""
             this.Flags.forEach((Flag) => {
                 if (Flag.State === Card.original_language) {
                     return Card.flag = Flag.ImgFlag

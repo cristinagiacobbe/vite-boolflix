@@ -14,7 +14,8 @@ export default {
     },
     data() {
         return {
-            state
+            state,
+            alt_flag: "/universal_flag.png",
         }
     },
 
@@ -25,12 +26,15 @@ export default {
         <li class="title"><strong>Titolo:</strong> {{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}</li>
         <li> {{ TotalCard.original_title ? "Titolo originale: " + TotalCard.original_title : "" }} </li>
         <Vote :TotalCard="TotalCard.vote_average"></Vote>
-        <li><img :src="TotalCard.flag" :alt="TotalCard.original_language"></li>
+
+        <li v-if="TotalCard.flag.length > 0"><img :src="TotalCard.flag" :alt="TotalCard.original_language"></li>
+        <li v-else><img class="unFlag" :src="alt_flag" :alt="TotalCard.original_language"></li>
+
         <Overview :TotalCard="TotalCard"></Overview>
     </div>
 </template>
 
-<style>
+<style scoped>
 .card-text {
     height: 489px;
     color: white;
@@ -53,5 +57,9 @@ li {
 
 .overview {
     padding-top: 0.5rem;
+}
+
+.unFlag {
+    width: 50px;
 }
 </style>

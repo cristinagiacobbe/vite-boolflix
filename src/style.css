@@ -27,9 +27,3 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
-
-@media (max-width: 1200px) {
-  .col {
-    width: calc(100% / 12 * 4);
-  }
-}
