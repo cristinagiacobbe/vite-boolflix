@@ -61,6 +61,8 @@ export const state = reactive({
                 this.matchFlag(this.MovieCards)
                 this.roundVote(this.MovieCards)
                 this.concat(this.MovieCards)
+
+                //   this.cast(this.MovieCards, this.movieCastList)
             })
         axios
             .get(filteredTvUrl)
@@ -70,10 +72,13 @@ export const state = reactive({
                 this.matchFlag(this.TvCards)
                 this.roundVote(this.TvCards)
                 this.concat(this.TvCards)
+
+                //    this.cast(this.TvCards, this.tvCastList)
             })
             .catch(error => {
                 console.error(error);
             })
+
     },
     matchFlag(list) {
         list.forEach((Card) => {
@@ -93,5 +98,16 @@ export const state = reactive({
     concat(list) {
         this.TotalCards = this.TotalCards.concat(list)
     },
+    cast(list, castList) {
+        list.forEach((Card) => {
+            axios
+                .get(`"https://api.themoviedb.org/3/movie/${Card.id}/credits?api_key=8d990f04e5e690857302762e75a6986a"`)
+                .then((response) => {
+                    console.log(response);
+                    //this.castList = response.data
+
+                })
+        })
+    }
 
 })
