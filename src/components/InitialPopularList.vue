@@ -21,6 +21,11 @@ export default {
         state.popularCards = response.data.results
     })
     },
+    computed: {
+        getFound() {
+            return state.TotalCards.length === 0 && state.popularCards.length === 0 ? 'No results found':''
+        }
+    },
 }
 </script>
 <template>

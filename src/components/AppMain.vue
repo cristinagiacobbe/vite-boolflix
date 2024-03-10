@@ -13,13 +13,8 @@ export default {
         return {
             state,           
         };
-    },
+    },   
     
-    computed: {
-        getFound() {
-            return state.TotalCards.length === 0 && state.popularCards.length === 0 ? 'No results found':''
-        }
-    },
 }
 </script>
 

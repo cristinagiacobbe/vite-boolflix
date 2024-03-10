@@ -60,6 +60,7 @@ export const state = reactive({
                 this.MovieCards = response.data.results
                 this.matchFlag(this.MovieCards)
                 this.roundVote(this.MovieCards)
+                this.cast(this.MovieCards, this.movieCastList)
                 this.concat(this.MovieCards)
 
                 //   this.cast(this.MovieCards, this.movieCastList)
@@ -71,6 +72,7 @@ export const state = reactive({
                 this.TvCards = response.data.results
                 this.matchFlag(this.TvCards)
                 this.roundVote(this.TvCards)
+                this.cast(this.TvCards, this.tvCastList)
                 this.concat(this.TvCards)
 
                 //    this.cast(this.TvCards, this.tvCastList)
