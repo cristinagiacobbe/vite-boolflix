@@ -46,12 +46,13 @@ export const state = reactive({
             ImgFlag: "https://flagcdn.com/32x24/es.png"
         }
     ],
+    popularCards: [],
 
     filterResults() {
         const filteredMovieUrl = `${state.movie_api_url}${this.searchMovie}`
         const filteredTvUrl = `${state.tv_api_url}${this.searchMovie}`
         this.TotalCards = []
-
+        this.popularCards = []
         axios
             .get(filteredMovieUrl)
             .then((response) => {
@@ -91,5 +92,6 @@ export const state = reactive({
     },
     concat(list) {
         this.TotalCards = this.TotalCards.concat(list)
-    }
+    },
+
 })
