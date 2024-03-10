@@ -3,9 +3,6 @@ import { state } from '../state.js'
 import MovieList from './MovieList.vue'
 import InitialPopularList from './InitialPopularList.vue'
 
-import axios from 'axios'
-
-
 export default {
     name: 'AppMain',
     components: {

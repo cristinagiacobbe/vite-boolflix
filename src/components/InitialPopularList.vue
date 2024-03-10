@@ -1,5 +1,7 @@
 <script>
 import { state } from '../state.js'
+import axios from 'axios'
+
 export default {
     name: 'InitialPopularList',
     data() {
