@@ -4,6 +4,8 @@ import axios from 'axios'
 export const state = reactive({
     movie_api_url: "https://api.themoviedb.org/3/search/movie?api_key=8d990f04e5e690857302762e75a6986a&language=it_IT&query=%2A",
     tv_api_url: "https://api.themoviedb.org/3/search/tv?api_key=8d990f04e5e690857302762e75a6986a&language=it_IT&query=%2A",
+    movieCredits_api_url: "https://api.themoviedb.org/3/movie/",
+    tvCredits_api_url: "https://api.themoviedb.org/3/tv/",
     MovieCards: [],
     TvCards: [],
     TotalCards: [],
@@ -47,6 +49,8 @@ export const state = reactive({
         }
     ],
     popularCards: [],
+    creditList: [],
+    castList: [],
 
     filterResults() {
         const filteredMovieUrl = `${state.movie_api_url}${this.searchMovie}`
@@ -60,10 +64,9 @@ export const state = reactive({
                 this.MovieCards = response.data.results
                 this.matchFlag(this.MovieCards)
                 this.roundVote(this.MovieCards)
-                this.cast(this.MovieCards, this.movieCastList)
+                this.cast(this.MovieCards, this.movieCredits_api_url)
                 this.concat(this.MovieCards)
 
-                //   this.cast(this.MovieCards, this.movieCastList)
             })
         axios
             .get(filteredTvUrl)
@@ -72,10 +75,9 @@ export const state = reactive({
                 this.TvCards = response.data.results
                 this.matchFlag(this.TvCards)
                 this.roundVote(this.TvCards)
-                this.cast(this.TvCards, this.tvCastList)
+                this.cast(this.TvCards, this.tvCredits_api_url)
                 this.concat(this.TvCards)
 
-                //    this.cast(this.TvCards, this.tvCastList)
             })
             .catch(error => {
                 console.error(error);
@@ -100,16 +102,20 @@ export const state = reactive({
     concat(list) {
         this.TotalCards = this.TotalCards.concat(list)
     },
-    cast(list, castList) {
+    cast(list, api_url) {
         list.forEach((Card) => {
             axios
-                .get(`"https://api.themoviedb.org/3/movie/${Card.id}/credits?api_key=8d990f04e5e690857302762e75a6986a"`)
+                .get(`${api_url}${Card.id}/credits?api_key=8d990f04e5e690857302762e75a6986a`)
                 .then((response) => {
-                    console.log(response);
-                    //this.castList = response.data
-
+                    this.creditList = response.data.cast
+                    this.creditList.forEach(element => {
+                        return this.castList = this.castList.concat(element.name)
+                    });
+                    console.log(this.castList);
+                    Card.cast = this.castList
+                    console.log(Card);
                 })
         })
-    }
+    },
 
 })
