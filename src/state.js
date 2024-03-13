@@ -66,7 +66,6 @@ export const state = reactive({
                 this.roundVote(this.MovieCards)
                 this.cast(this.MovieCards, this.movieCredits_api_url)
                 this.concat(this.MovieCards)
-
             })
         axios
             .get(filteredTvUrl)
@@ -77,7 +76,6 @@ export const state = reactive({
                 this.roundVote(this.TvCards)
                 this.cast(this.TvCards, this.tvCredits_api_url)
                 this.concat(this.TvCards)
-
             })
             .catch(error => {
                 console.error(error);
@@ -111,9 +109,11 @@ export const state = reactive({
                     this.creditList.forEach(element => {
                         return this.castList = this.castList.concat(element.name)
                     });
-                    console.log(this.castList);
-                    Card.cast = this.castList
-                    console.log(Card);
+                    for (let i = 0; i < 5; i++) {
+
+                        console.log(this.castList[i]);
+                        Card.cast += (`${this.castList[i]} -`)
+                    }
                 })
         })
     },

@@ -12,7 +12,7 @@ export default {
     components: {
         Vote,
         Overview,
-        Flag,
+        Flag,    
     },
     data() {
         return {
@@ -24,13 +24,18 @@ export default {
 </script>
 <template>
     <div class="card-text">
-        <li class="title"><strong>Titolo:</strong> {{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}</li>
-        <li> {{ TotalCard.original_title ? "Titolo originale: " + TotalCard.original_title : "" }} </li>
-        <Vote :TotalCard="TotalCard.vote_average"></Vote>
+        <ul>
+            <li class="title"><strong>Titolo:</strong> {{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}</li>
+            <li> {{ TotalCard.original_title ? "Titolo originale: " + TotalCard.original_title : "" }} </li>
+            <Vote :TotalCard="TotalCard.vote_average"></Vote>
+            <Flag :TotalCard="TotalCard"></Flag>
+            <Overview :TotalCard="TotalCard"></Overview>
+            <br>
+            <hr>
+            <strong>Cast:</strong>
+            <li>{{ TotalCard.cast }}</li>
 
-        <Flag :TotalCard="TotalCard"></Flag>
-
-        <Overview :TotalCard="TotalCard"></Overview>
+        </ul>
     </div>
 </template>
 
