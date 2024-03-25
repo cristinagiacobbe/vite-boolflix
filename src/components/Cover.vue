@@ -25,7 +25,8 @@ export default {
 <style scoped>
 .card-cover {
     position: absolute;
-
+    top: 0.5rem;
+    left: 0.5rem;
 }
 
 .card-cover:hover {
@@ -33,6 +34,6 @@ export default {
 }
 
 img {
-    width: calc(100% - 1rem);
+    width: calc(100% - 0.5rem);
 }
 </style>

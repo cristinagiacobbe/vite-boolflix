@@ -12,7 +12,7 @@ export default {
     components: {
         Vote,
         Overview,
-        Flag,    
+        Flag,
     },
     data() {
         return {
@@ -25,7 +25,8 @@ export default {
 <template>
     <div class="card-text">
         <ul>
-            <li class="title"><strong>Titolo:</strong> {{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}</li>
+            <li class="title"><strong>Titolo:</strong> {{ TotalCard.title ? TotalCard.title : TotalCard.original_name }}
+            </li>
             <li> {{ TotalCard.original_title ? "Titolo originale: " + TotalCard.original_title : "" }} </li>
             <Vote :TotalCard="TotalCard.vote_average"></Vote>
             <Flag :TotalCard="TotalCard"></Flag>
@@ -41,11 +42,10 @@ export default {
 
 <style scoped>
 .card-text {
-    height: 489px;
+    height: 470px;
     color: white;
     border: 1px solid white;
     background-color: black;
-    padding: 1rem;
 }
 
 li {

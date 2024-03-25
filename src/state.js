@@ -51,6 +51,7 @@ export const state = reactive({
     popularCards: [],
     creditList: [],
     castList: [],
+    shortCastList: [],
 
     filterResults() {
         const filteredMovieUrl = `${state.movie_api_url}${this.searchMovie}`
@@ -107,15 +108,19 @@ export const state = reactive({
                 .then((response) => {
                     this.creditList = response.data.cast
                     this.creditList.forEach(element => {
-                        for (let element = 0; element < 5; element++) {
-                            return this.castList = this.castList.concat(element.name)
-                        }
-                        console.log(this.castList);
+
+
+
+                        this.castList = this.castList.concat(element.name)
                     });
+                    for (let i = 0; i < 5; i++) {
+                        this.shortCastList = this.shortCastList.concat(this.castList[i])
+                    }
+                    console.log(this.shortCastList);
                 })
-
-            Card.cast = this.castList
-
+            console.log(this.shortCastList);
+            Card.cast = this.shortCastList
+            console.log(Card.cast);
         })
 
     },

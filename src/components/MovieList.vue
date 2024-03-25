@@ -13,8 +13,8 @@ export default {
         return {
             state,
         }
-    }, 
-    
+    },
+
 }
 
 
@@ -22,7 +22,7 @@ export default {
 
 <template>
     <div class="container">
-     
+
         <div class="row">
             <div class="col" v-for="TotalCard in state.TotalCards">
                 <div class="card">
@@ -38,7 +38,6 @@ export default {
 
 
 <style scope>
-
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -49,7 +48,7 @@ export default {
 }
 
 .card {
-
+    position: relative;
     padding: 0.5rem;
 }
 
