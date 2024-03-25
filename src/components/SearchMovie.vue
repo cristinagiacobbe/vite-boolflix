@@ -17,7 +17,7 @@ export default {
 <template>
     <div class="container">
         <input name="searchMovie" type="text" v-model="state.searchMovie"
-            placeholder="Inserisci il titolo di un film/serie tv">
+            placeholder="Inserisci il titolo di un film/serie tv" @keypress.enter="$emit('search')">
         <button @click="$emit('search')">Search</button>
     </div>
 </template>

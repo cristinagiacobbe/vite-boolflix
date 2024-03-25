@@ -107,15 +107,17 @@ export const state = reactive({
                 .then((response) => {
                     this.creditList = response.data.cast
                     this.creditList.forEach(element => {
-                        return this.castList = this.castList.concat(element.name)
+                        for (let element = 0; element < 5; element++) {
+                            return this.castList = this.castList.concat(element.name)
+                        }
+                        console.log(this.castList);
                     });
-                    for (let i = 0; i < 5; i++) {
-
-                        console.log(this.castList[i]);
-                        Card.cast += (`${this.castList[i]} -`)
-                    }
                 })
+
+            Card.cast = this.castList
+
         })
+
     },
 
 })
