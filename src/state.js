@@ -51,7 +51,7 @@ export const state = reactive({
     popularCards: [],
     creditList: [],
     castList: [],
-    shortCastList: [],
+    shortCastList: "",
 
     filterResults() {
         const filteredMovieUrl = `${state.movie_api_url}${this.searchMovie}`
@@ -103,6 +103,8 @@ export const state = reactive({
     },
     cast(list, api_url) {
         list.forEach((Card) => {
+            this.shortCastList = "";
+            this.castList = [];
             axios
                 .get(`${api_url}${Card.id}/credits?api_key=8d990f04e5e690857302762e75a6986a`)
                 .then((response) => {
