@@ -42,10 +42,10 @@ export default {
 
 <style scoped>
 .card-text {
-    height: 470px;
     color: white;
     border: 1px solid white;
     background-color: black;
+    height: 470px;
 }
 
 li {

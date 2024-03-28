@@ -29,11 +29,8 @@ export default {
     left: 0.5rem;
 }
 
-.card-cover:hover {
-    display: none;
-}
-
 img {
     width: calc(100% - 0.5rem);
+    height: 470px;
 }
 </style>

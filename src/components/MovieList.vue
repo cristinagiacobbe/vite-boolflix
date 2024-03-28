@@ -37,7 +37,7 @@ export default {
 </template>
 
 
-<style scope>
+<style>
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -50,23 +50,18 @@ export default {
 .card {
     position: relative;
     padding: 0.5rem;
+    height: 470px;
 }
 
-@media (max-width: 1400px) {
-    .col {
-        width: calc(100% / 12 * 4);
-    }
+.card-text {
+    display: none;
 }
 
-@media (max-width: 1100px) {
-    .col {
-        width: calc(100% / 12 * 6);
-    }
+.card:hover .card-text {
+    display: block;
 }
 
-@media (max-width: 750px) {
-    .col {
-        width: 100%;
-    }
+.card:hover img {
+    display: none;
 }
 </style>
