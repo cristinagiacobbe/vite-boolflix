@@ -50,7 +50,6 @@ export default {
 .card {
     position: relative;
     padding: 0.5rem;
-    height: 470px;
 }
 
 .card-text {
