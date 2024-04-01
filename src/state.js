@@ -52,6 +52,112 @@ export const state = reactive({
     creditList: [],
     castList: [],
     shortCastList: [],
+    Genres: [
+        {
+            "id": 28,
+            "name": "Action"
+        },
+        {
+            "id": 12,
+            "name": "Adventure"
+        },
+        {
+            "id": 16,
+            "name": "Animation"
+        },
+        {
+            "id": 35,
+            "name": "Comedy"
+        },
+        {
+            "id": 80,
+            "name": "Crime"
+        },
+        {
+            "id": 99,
+            "name": "Documentary"
+        },
+        {
+            "id": 18,
+            "name": "Drama"
+        },
+        {
+            "id": 10751,
+            "name": "Family"
+        },
+        {
+            "id": 14,
+            "name": "Fantasy"
+        },
+        {
+            "id": 36,
+            "name": "History"
+        },
+        {
+            "id": 27,
+            "name": "Horror"
+        },
+        {
+            "id": 10402,
+            "name": "Music"
+        },
+        {
+            "id": 9648,
+            "name": "Mystery"
+        },
+        {
+            "id": 10749,
+            "name": "Romance"
+        },
+        {
+            "id": 878,
+            "name": "Science Fiction"
+        },
+        {
+            "id": 10770,
+            "name": "TV Movie"
+        },
+        {
+            "id": 53,
+            "name": "Thriller"
+        },
+        {
+            "id": 10752,
+            "name": "War"
+        },
+        {
+            "id": 37,
+            "name": "Western"
+        },
+        {
+            "id": 10759,
+            "name": "Action & Adventure"
+        },
+        {
+            "id": 10763,
+            "name": "News"
+        },
+        {
+            "id": 10764,
+            "name": "Reality"
+        },
+        {
+            "id": 10765,
+            "name": "Sci-Fi & Fantasy"
+        },
+        {
+            "id": 10766,
+            "name": "Soap"
+        },
+        {
+            "id": 10767,
+            "name": "Talk"
+        },
+        {
+            "id": 10768,
+            "name": "War & Politics"
+        }
+    ],
 
     filterResults() {
         const filteredMovieUrl = `${state.movie_api_url}${this.searchMovie}`
@@ -65,7 +171,9 @@ export const state = reactive({
                 this.MovieCards = response.data.results
                 this.matchFlag(this.MovieCards)
                 this.roundVote(this.MovieCards)
+                this.matchGenre(this.MovieCards)
                 this.cast(this.MovieCards, this.movieCredits_api_url)
+                console.log(this.MovieCards)
                 this.concat(this.MovieCards)
             })
         axios
@@ -74,8 +182,10 @@ export const state = reactive({
                 /* console.log(response.data.results); */
                 this.TvCards = response.data.results
                 this.matchFlag(this.TvCards)
+                this.matchGenre(this.TvCards)
                 this.roundVote(this.TvCards)
                 this.cast(this.TvCards, this.tvCredits_api_url)
+                console.log(this.TvCards)
                 this.concat(this.TvCards)
             })
             .catch(error => {
@@ -91,6 +201,22 @@ export const state = reactive({
                     return Card.flag = Flag.ImgFlag
                 }
             })
+        })
+    },
+
+    matchGenre(list) {
+        list.forEach((Card) => {
+            Card.genres = []
+            Card.genre_ids.forEach((genre_id) => {
+                this.Genres.forEach((Genre) => {
+                    if (genre_id === Genre.id) {
+                        return Card.genres.push(Genre.name)
+                    }
+                })
+            })
+
+
+
         })
     },
     roundVote(list) {
@@ -112,7 +238,6 @@ export const state = reactive({
                     this.creditList.forEach(element => {
                         this.castList.push(element.name)
                     });
-                    console.log(this.shortCastList);
                     this.shortCastList = [];
                     for (let i = 0; i < 5; i++) {
                         this.shortCastList += ` ${this.castList[i]} `

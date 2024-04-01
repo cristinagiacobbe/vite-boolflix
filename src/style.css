@@ -32,3 +32,10 @@ ul {
   list-style: none;
 }
 
+.card:hover .card-cover {
+  display: none;
+}
+
+.card:hover .card-text {
+  display: block;
+}

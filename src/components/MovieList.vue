@@ -1,12 +1,11 @@
 <script>
 import { state } from '../state.js'
-import Cover from './Cover.vue'
+
 import CardText from './CardText.vue'
 
 export default {
     name: 'MovieList',
     components: {
-        Cover,
         CardText,
     },
     data() {
@@ -27,7 +26,6 @@ export default {
             <div class="col" v-for="TotalCard in state.TotalCards">
                 <div class="card">
                     <ul>
-                        <Cover :image="TotalCard.poster_path"></Cover>
                         <CardText :TotalCard="TotalCard"></CardText>
                     </ul>
                 </div>
@@ -45,22 +43,11 @@ export default {
 
 .col {
     width: calc(100% / 12 * 3);
+    padding: 0.5rem;
 }
 
 .card {
     position: relative;
-    padding: 0.5rem;
-}
-
-.card-text {
-    display: none;
-}
-
-.card:hover .card-text {
-    display: block;
-}
-
-.card:hover img {
-    display: none;
+    height: 480px;
 }
 </style>
