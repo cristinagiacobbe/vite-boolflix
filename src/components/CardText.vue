@@ -3,6 +3,7 @@ import { state } from '../state.js'
 import Vote from './Vote.vue'
 import Overview from './Overview.vue'
 import Flag from './Flag.vue'
+import Genres from './Genres.vue'
 
 export default {
     name: 'CardText',
@@ -13,6 +14,7 @@ export default {
         Vote,
         Overview,
         Flag,
+        Genres,
     },
     data() {
         return {
@@ -45,8 +47,7 @@ export default {
             <br>
             <hr>
             <br>
-            <li v-for="Genre, index in TotalCard.genres">
-                Genere{{ index + 1 }}: {{ Genre }}</li>
+            <Genres :TotalCard="TotalCard"></Genres>
         </ul>
 
     </div>
