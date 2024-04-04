@@ -1,11 +1,13 @@
 <script>
 import { state } from '../state.js'
 import SearchMovie from './SearchMovie.vue'
+import FilterGenres from './FilterGenres.vue'
 
 export default {
     name: 'AppHeader',
     components: {
         SearchMovie,
+        FilterGenres,
     },
     data() {
         return {
@@ -21,6 +23,9 @@ export default {
         <div class="container">
             <div class="logo">
                 <img src="/logo_boolflix.png" alt="logo">
+            </div>
+            <div class="selectGenrebar">
+                <FilterGenres></FilterGenres>
             </div>
             <div class="searchbar">
                 <SearchMovie @search="state.filterResults()"></SearchMovie>

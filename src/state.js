@@ -158,39 +158,45 @@ export const state = reactive({
             "name": "War & Politics"
         }
     ],
+    selectedGenre: [],
+    filteredGenreCards: [],
 
     filterResults() {
         const filteredMovieUrl = `${state.movie_api_url}${this.searchMovie}`
         const filteredTvUrl = `${state.tv_api_url}${this.searchMovie}`
         this.TotalCards = []
         this.popularCards = []
+
         axios
             .get(filteredMovieUrl)
             .then((response) => {
                 /* console.log(response.data.results); */
                 this.MovieCards = response.data.results
-                this.matchFlag(this.MovieCards)
-                this.roundVote(this.MovieCards)
                 this.matchGenre(this.MovieCards)
-                this.cast(this.MovieCards, this.movieCredits_api_url)
-                console.log(this.MovieCards)
-                this.concat(this.MovieCards)
+                this.filterGenres(this.MovieCards)
+                console.log(this.filteredGenreCards);
+                this.matchFlag(this.filteredGenreCards)
+                this.roundVote(this.filteredGenreCards)
+                this.cast(this.filteredGenreCards, this.movieCredits_api_url)
+                this.concat(this.filteredGenreCards)
             })
         axios
             .get(filteredTvUrl)
             .then((response) => {
                 /* console.log(response.data.results); */
                 this.TvCards = response.data.results
-                this.matchFlag(this.TvCards)
                 this.matchGenre(this.TvCards)
-                this.roundVote(this.TvCards)
-                this.cast(this.TvCards, this.tvCredits_api_url)
-                console.log(this.TvCards)
-                this.concat(this.TvCards)
+                this.filterGenres(this.TvCards)
+                console.log(this.filteredGenreCards);
+                this.matchFlag(this.filteredGenreCards)
+                this.roundVote(this.filteredGenreCards)
+                this.cast(this.filteredGenreCards, this.tvCredits_api_url)
+                this.concat(this.filteredGenreCards)
             })
             .catch(error => {
                 console.error(error);
             })
+
 
     },
     matchFlag(list) {
@@ -214,11 +220,9 @@ export const state = reactive({
                     }
                 })
             })
-
-
-
         })
     },
+
     roundVote(list) {
         list.forEach((Card) => {
             return Card.vote_average = Math.round(Card.vote_average / 2)
@@ -227,6 +231,7 @@ export const state = reactive({
     concat(list) {
         this.TotalCards = this.TotalCards.concat(list)
     },
+
     cast(list, api_url) {
         list.forEach((Card) => {
 
@@ -245,7 +250,20 @@ export const state = reactive({
                     Card.cast = this.shortCastList
                 })
         })
+    },
 
+    filterGenres(list) {
+        this.filterdeGenreCards = []
+        if (this.selectedGenre.length > 0) {
+            this.filteredGenreCards = list.filter((Card) => {
+                return Card.genres.includes(this.selectedGenre)
+            })
+            /* console.log(this.filteredGenreCards) */
+            list = this.filteredGenreCards
+        } else {
+            return this.filteredGenreCards = list
+        }
+        console.log(list);
     },
 
 })
